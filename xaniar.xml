@@ -1,0 +1,54 @@
+<Xaniar>
+	<Types>
+		<Type ref="num" autoincrement="yes">int</Type>
+		<Type ref="int">int</Type>
+		<Type ref="string">nvarchar(50)</Type>
+		<Type ref="JDate">char(10)</Type>
+		<Type ref="Time">Time</Type>
+	</Types>
+
+	<Occupation ref="tblOccupation">
+		<Key ref="Id" type="num">OccupationId</Key>
+		<Prop ref="Title" type="string">OccupationName</Prop>
+	</Occupation>
+	<Student ref="tblStudent">
+		<Key ref="Id" type="num">StudentId</Key>
+		<Prop ref="Name" type="string">FirstName</Prop>
+		<Prop ref="Family" type="string">LastName</Prop>
+		<Prop ref="Age" type="int" >Age</Prop>
+		<Prop ref="OccupationId" type="Occupation" >Occupation</Prop> 
+	</Student>
+	<Teacher ref="tblTeacher">
+		<Key ref="Id" type="num">TeacherId</Key>
+		<Prop ref="Name" type="string">FirstName</Prop>
+		<Prop ref="Family" type="string">LastName</Prop>
+		<Prop ref="Age" type="int" >Age</Prop>
+		<Prop ref="OccupationId" type="Occupation" >Occupation</Prop> 
+	</Teacher>
+	<Course ref="tblCourse">
+		<Key ref="Id" type="num">CourseId</Key>
+		<Prop ref="Title" type="string">Name</Prop>
+		<Prop ref="OccupationId" type="Occupation" >Occupation</Prop> 
+	</Course>
+	<Semester>
+		<Key ref="Id" type="num">SemesterId</Key>
+		<Prop ref="Title" type="string">Name</Prop>
+		<Prop ref="Type" type="int">Type</Prop>
+	</Semester>
+
+	<Present ref="tblTeacherCourse">
+		<Key ref="TeacherId" type="Teacher">Teacher</Key>
+		<Key ref="CourseId" type="Course">Course</Key>
+		<Key ref="SemesterId" type="Semester">Semester</Key>
+		<Prop ref="Issue" type="JDate">Date</Prop>
+		<Prop ref="Time" type="Time">Time</Prop>
+		<Prop ref="ExIssue" type="JDate">ExamDate</Prop>
+		<Prop ref="ExTime" type="Time">ExamTime</Prop>
+	</Present>
+
+	<Selection ref="tblSelection">
+		<Key ref="StudentId" type="Student">Student</Key>
+		<Key ref="Teacher,Course,Semester" type="Present">Present</Key>
+	</Selection>
+
+</Xaniar>
